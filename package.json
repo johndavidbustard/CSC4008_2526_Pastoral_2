@@ -1,21 +1,16 @@
 {
-  "name": "pastoral-care-dashboard",
-  "version": "0.1.0",
-  "description": "MVP desktop dashboard for pastoral care case management",
-  "main": "server.js",
+  "name": "pastoral-care-2",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node ./bin/www"
   },
-  "keywords": [
-    "pastoral",
-    "dashboard",
-    "mvp"
-  ],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
-    "express": "^4.19.2",
-    "nanoid": "^5.1.6"
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.7",
+    "express": "^4.21.2",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
   }
 }

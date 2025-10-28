@@ -3,7 +3,7 @@
     {
       "id": "tricia",
       "role": "support",
-      "name": "Tricia Quinn"
+      "name": "Tricia O'Reilly"
     },
     {
       "id": "adv-lee",
@@ -84,13 +84,20 @@
       "status": "open",
       "advisorId": "adv-lee",
       "ownerId": "tricia",
-      "nextActionDue": "2024-06-04T13:30:00Z",
-      "followUpDate": "2024-06-04",
+      "nextActionDue": "2025-10-31",
+      "followUpDate": "2025-10-31",
       "reasons": [
         "ec_deadline"
       ],
       "overview": "Extenuating circumstance (EC) evidence due; waiting on documentation.",
       "timeline": [
+        {
+          "id": "tl-PXbZsG",
+          "type": "note",
+          "timestamp": "2025-10-28T14:25:10.042Z",
+          "authorId": "tricia",
+          "summary": "Also missed several deadlines"
+        },
         {
           "id": "tl-mia-1",
           "type": "note",
