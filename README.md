@@ -132,6 +132,15 @@ npm start
 
 Then visit `http://localhost:3000` in a desktop browser.
 
+### Run with Docker
+
+```bash
+docker build -t pastoral-dashboard .
+docker run --rm -p 3000:3000 pastoral-dashboard
+```
+
+Open `http://localhost:3000` to reach the dashboard. Override the exposed port with `-p <host-port>:3000` if you need a different host port.
+
 ### What's included
 
 - **Tricia dashboard:** global queue ordered by the next action due, intake tray, unmatched email preview, and full case timelines. Add new notes and update follow-up dates in-line.
