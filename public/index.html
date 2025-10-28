@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pastoral Care Dashboard MVP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="layout">
+  <header class="topbar">
+    <div class="topbar-brand">
+      <img src="images/qub-logo.svg" alt="Queen's University Belfast logo" class="topbar-logo">
+      <div class="topbar-title">
+        <h1>Pastoral Care Dashboard</h1>
+        <p class="subtitle">Desktop-only pastoral case management MVP</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="card-grid">
+      <article class="card">
+        <h2>Tricia Dashboard</h2>
+        <p>Global action queue, full visibility of open cases, intake tray, and unmatched email.</p>
+        <a class="button" href="tricia.html">Open dashboard</a>
+      </article>
+
+      <article class="card">
+        <h2>Advisor Dashboard</h2>
+        <p>View advisee cases, track upcoming follow-ups, and add meeting notes.</p>
+        <form id="advisor-form" class="form-inline">
+          <label for="advisor-select">Choose advisor</label>
+          <select id="advisor-select">
+            <option value="adv-lee">Dr. Karen Lee</option>
+            <option value="adv-singh">Dr. Amar Singh</option>
+          </select>
+          <button type="submit" class="button">Open dashboard</button>
+        </form>
+      </article>
+
+      <article class="card">
+        <h2>Lecturer Intake</h2>
+        <p>Quickly report a concern and hand it off to the pastoral support team.</p>
+        <a class="button" href="intake.html">Report concern</a>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Prototype only — sample data, no real student information.</small>
+  </footer>
+
+  <script type="module">
+    const form = document.getElementById("advisor-form");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const advisorId = document.getElementById("advisor-select").value;
+      window.location.href = `advisor.html?advisorId=${encodeURIComponent(advisorId)}`;
+    });
+  </script>
+</body>
+</html>

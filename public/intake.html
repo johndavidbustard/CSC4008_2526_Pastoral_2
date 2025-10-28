@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280">
+  <title>Report Concern • Pastoral Care</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="layout">
+  <header class="topbar">
+    <div class="topbar-brand">
+      <a class="brand-link" href="index.html">
+        <img src="images/qub-logo.svg" alt="Queen's University Belfast logo" class="topbar-logo">
+        <span>Queen's University Belfast</span>
+      </a>
+      <h1>Report a Concern</h1>
+    </div>
+    <nav class="breadcrumb">
+      <a href="index.html">&larr; Back</a>
+    </nav>
+  </header>
+
+  <main class="content narrow">
+    <section class="panel">
+      <h2>Lecturer intake form</h2>
+      <p class="helper-text">
+        Complete this short form to notify the pastoral support team. This prototype stores submissions locally only.
+      </p>
+
+      <form id="intake-form" class="form-grid">
+        <label>
+          Lecturer name
+          <input type="text" name="lecturerName" placeholder="Dr Jane Doe" />
+        </label>
+
+        <label>
+          Student email *
+          <input type="email" name="studentEmail" placeholder="student@qub.ac.uk" required />
+        </label>
+
+        <label class="full-width">
+          Summary *
+          <textarea name="summary" rows="5" placeholder="Describe the concern" required></textarea>
+        </label>
+
+        <button type="submit" class="button full-width">Submit concern</button>
+      </form>
+
+      <div id="intake-success" class="notice hidden">
+        <strong>Submitted.</strong> The support office will triage and link this to the correct case.
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Prototype only — submissions are stored locally.</small>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+  <script type="module">
+    import { renderIntakeForm } from "./app.js";
+    renderIntakeForm();
+  </script>
+</body>
+</html>

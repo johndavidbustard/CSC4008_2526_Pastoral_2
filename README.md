@@ -115,3 +115,32 @@ The application is intended **exclusively for desktop/laptop use** by staff. It 
 git clone <repo>
 cd pastoral-dashboard
 npm install
+```
+
+---
+
+## 11) MVP prototype (this repo)
+
+This repository contains a lightweight, desktop-only MVP that demonstrates the core workflows described above.
+
+### Run locally
+
+```bash
+npm install
+npm start
+```
+
+Then visit `http://localhost:3000` in a desktop browser.
+
+### What's included
+
+- **Tricia dashboard:** global queue ordered by the next action due, intake tray, unmatched email preview, and full case timelines. Add new notes and update follow-up dates in-line.
+- **Advisor dashboard:** scoped queue for a selected advisor; the same case timeline experience with note capture.
+- **Lecturer intake form:** quick concern submission that feeds the intake queue.
+- **API-first backend:** Express server serving JSON endpoints backed by a simple JSON data store (`data/seed.json`) so it can evolve into MongoDB later.
+
+### Sample data
+
+The JSON store ships with pre-populated students, cases, and inbox items. Posting a note or intake submission writes back to `data/seed.json`, simulating persistence without requiring a database.
+
+> Prototype only — replace with live integrations, authentication, and audit logging before production use.

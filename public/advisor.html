@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280">
+  <title>Advisor Dashboard • Pastoral Care</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="layout">
+  <header class="topbar">
+    <div class="topbar-brand">
+      <a class="brand-link" href="index.html">
+        <img src="images/qub-logo.svg" alt="Queen's University Belfast logo" class="topbar-logo">
+        <span>Queen's University Belfast</span>
+      </a>
+      <h1 id="advisor-heading">Advisor Dashboard</h1>
+    </div>
+    <nav class="breadcrumb">
+      <a href="index.html">&larr; Back</a>
+    </nav>
+  </header>
+
+  <main class="content grid-2">
+    <section>
+      <h2>Upcoming actions</h2>
+      <ul id="advisor-queue-list" class="list queue"></ul>
+    </section>
+
+    <section>
+      <h2>Case detail</h2>
+      <div id="advisor-case-detail" class="panel empty">
+        <p>Select a case to review the timeline and record notes.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Prototype with sample data. No student information stored.</small>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+  <script type="module">
+    import { renderAdvisorDashboard } from "./app.js";
+    renderAdvisorDashboard();
+  </script>
+</body>
+</html>

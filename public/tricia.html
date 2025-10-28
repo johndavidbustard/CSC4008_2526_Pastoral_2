@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280">
+  <title>Tricia Dashboard • Pastoral Care</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="layout">
+  <header class="topbar">
+    <div class="topbar-brand">
+      <a class="brand-link" href="index.html">
+        <img src="images/qub-logo.svg" alt="Queen's University Belfast logo" class="topbar-logo">
+        <span>Queen's University Belfast</span>
+      </a>
+      <h1>Tricia Dashboard</h1>
+    </div>
+    <nav class="breadcrumb">
+      <a href="index.html">&larr; Back</a>
+    </nav>
+  </header>
+
+  <main class="content grid-2">
+    <section>
+      <h2>Action queue</h2>
+      <p class="helper-text">Ordered by next action due. Reasons show why the case is surfaced.</p>
+      <ul id="queue-list" class="list queue"></ul>
+
+      <h2>Intake tray</h2>
+      <p class="helper-text">New concerns submitted by lecturers.</p>
+      <ul id="intake-list" class="list intake"></ul>
+
+      <h2>Unmatched email</h2>
+      <p class="helper-text">Inbound messages that need manual linking.</p>
+      <ul id="email-list" class="list intake"></ul>
+    </section>
+
+    <section>
+      <h2>Case detail</h2>
+      <div id="case-detail" class="panel empty">
+        <p>Select a case to view student context and timeline.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Prototype with sample data. No student information stored.</small>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+  <script type="module">
+    import { renderTriciaDashboard } from "./app.js";
+    renderTriciaDashboard();
+  </script>
+</body>
+</html>
