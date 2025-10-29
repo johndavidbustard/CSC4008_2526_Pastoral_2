@@ -21,13 +21,47 @@
   </header>
 
   <main class="content grid-2">
-    <section>
-      <h2>Upcoming actions</h2>
+    <section class="primary-column">
+      <section class="summary-card" id="advisor-summary" aria-live="polite">
+        <header>
+          <h2>Today’s snapshot</h2>
+          <p class="helper-text">Keeps you focused on students that need a touch-point.</p>
+        </header>
+        <div class="summary-card-grid">
+          <article>
+            <h3>Active cases</h3>
+            <p class="metric-value" data-advisor-cases>–</p>
+          </article>
+          <article>
+            <h3>Due today</h3>
+            <p class="metric-value" data-advisor-today>–</p>
+          </article>
+          <article>
+            <h3>Needs reply</h3>
+            <p class="metric-value" data-advisor-unanswered>–</p>
+          </article>
+        </div>
+        <div class="summary-footer">
+          <p>Forward any student emails using the button below so Tricia can triage quickly.</p>
+        </div>
+      </section>
+
+      <header class="section-header">
+        <div>
+          <h2>Upcoming actions</h2>
+          <p class="helper-text">Select a student to view history and share an update.</p>
+        </div>
+      </header>
       <ul id="advisor-queue-list" class="list queue"></ul>
     </section>
 
-    <section>
-      <h2>Case detail</h2>
+    <section class="secondary-column">
+      <header class="section-header">
+        <div>
+          <h2>Case detail</h2>
+          <p class="helper-text">Everything you need before replying or forwarding an email.</p>
+        </div>
+      </header>
       <div id="advisor-case-detail" class="panel empty">
         <p>Select a case to review the timeline and record notes.</p>
       </div>
@@ -43,5 +77,38 @@
     import { renderAdvisorDashboard } from "./app.js";
     renderAdvisorDashboard();
   </script>
+
+  <div id="forward-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="forward-modal-title">
+    <div class="modal-content">
+      <button class="modal-close" type="button" data-close-modal>&times;</button>
+      <header>
+        <h2 id="forward-modal-title">Forward email to Tricia</h2>
+        <p class="helper-text">Attach the latest thread or copy the template below.</p>
+      </header>
+      <section class="modal-body">
+        <div class="modal-steps">
+          <ol>
+            <li>Drag the student email thread into the upload area below, or download as PDF.</li>
+            <li>Click “Compose email” to open your mail client with Tricia copied in.</li>
+            <li>Send. The message appears in the Unmatched Email list for Tricia to link.</li>
+          </ol>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="button" data-compose-email>Compose email</button>
+          <button type="button" class="button outline" data-copy-template>Copy template</button>
+        </div>
+        <label class="upload-zone">
+          <span class="upload-title">Drop files or click to attach the thread</span>
+          <input type="file" multiple />
+        </label>
+        <div class="modal-template">
+          <p><strong>Suggested subject:</strong> <span data-template-subject></span></p>
+          <p><strong>Suggested body:</strong></p>
+          <pre data-template-body></pre>
+        </div>
+        <div class="notice hidden" data-modal-feedback></div>
+      </section>
+    </div>
+  </div>
 </body>
 </html>

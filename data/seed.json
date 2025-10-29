@@ -3,12 +3,14 @@
     {
       "id": "tricia",
       "role": "support",
-      "name": "Tricia O'Reilly"
+      "name": "Tricia O'Reilly",
+      "email": "pastoral.support@qub.ac.uk"
     },
     {
       "id": "adv-lee",
       "role": "advisor",
       "name": "Dr. Karen Lee",
+      "email": "karen.lee@qub.ac.uk",
       "adviseeIds": [
         "case-elliott",
         "case-mia"
@@ -18,6 +20,7 @@
       "id": "adv-singh",
       "role": "advisor",
       "name": "Dr. Amar Singh",
+      "email": "amar.singh@qub.ac.uk",
       "adviseeIds": [
         "case-jordan"
       ]

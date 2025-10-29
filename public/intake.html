@@ -24,30 +24,57 @@
     <section class="panel">
       <h2>Lecturer intake form</h2>
       <p class="helper-text">
-        Complete this short form to notify the pastoral support team. This prototype stores submissions locally only.
+        Keep it short and factual. Tricia gets the intake instantly and follows up with the advisor of studies.
       </p>
 
-      <form id="intake-form" class="form-grid">
-        <label>
-          Lecturer name
-          <input type="text" name="lecturerName" placeholder="Dr Jane Doe" />
-        </label>
+      <ul class="helper-checklist">
+        <li>Include the student email and their course if known.</li>
+        <li>Describe what happened and when in a couple of sentences.</li>
+        <li>Avoid sensitive detail (medical notes etc.) — Tricia will gather that securely.</li>
+      </ul>
 
-        <label>
-          Student email *
-          <input type="email" name="studentEmail" placeholder="student@qub.ac.uk" required />
-        </label>
+      <form id="intake-form" class="intake-form">
+        <div class="progress-indicator" aria-live="polite">
+          <span data-progress-label>Step 1 of 2 • Lecturer details</span>
+        </div>
 
-        <label class="full-width">
-          Summary *
-          <textarea name="summary" rows="5" placeholder="Describe the concern" required></textarea>
-        </label>
+        <div class="form-step is-active" data-step="contact">
+          <label>
+            Lecturer name
+            <input type="text" name="lecturerName" placeholder="Dr Jane Doe" />
+          </label>
 
-        <button type="submit" class="button full-width">Submit concern</button>
+          <label>
+            Student email *
+            <input type="email" name="studentEmail" placeholder="student@qub.ac.uk" required />
+          </label>
+
+          <div class="form-actions">
+            <button type="button" class="button full-width" data-next-step>Continue</button>
+          </div>
+        </div>
+
+        <div class="form-step" data-step="summary">
+          <label class="full-width">
+            Summary *
+            <textarea name="summary" rows="6" placeholder="Describe the concern in under 200 words" maxlength="200" required></textarea>
+            <span class="helper-text">Need more time? Save the draft email using the checkbox below.</span>
+          </label>
+
+          <label class="checkbox">
+            <input type="checkbox" name="copyTricia" />
+            <span>Email me a copy and CC Tricia automatically.</span>
+          </label>
+
+          <div class="form-actions duo">
+            <button type="button" class="button outline" data-prev-step>Back</button>
+            <button type="submit" class="button">Submit concern</button>
+          </div>
+        </div>
       </form>
 
-      <div id="intake-success" class="notice hidden">
-        <strong>Submitted.</strong> The support office will triage and link this to the correct case.
+      <div id="intake-success" class="notice hidden" role="status">
+        <strong>Submitted.</strong> We sent you a confirmation and notified Tricia.
       </div>
     </section>
   </main>

@@ -44,9 +44,21 @@ function decorateCase(caseRecord, data) {
         }
       : null,
     advisor: advisor
-      ? { id: advisor.id, name: advisor.name, role: advisor.role }
+      ? {
+          id: advisor.id,
+          name: advisor.name,
+          role: advisor.role,
+          email: advisor.email
+        }
       : null,
-    owner: owner ? { id: owner.id, name: owner.name, role: owner.role } : null,
+    owner: owner
+      ? {
+          id: owner.id,
+          name: owner.name,
+          role: owner.role,
+          email: owner.email
+        }
+      : null,
     timeline
   };
 }
@@ -68,7 +80,10 @@ app.get("/api/dashboards/tricia", (req, res) => {
     nextActionDue: c.nextActionDue,
     reasons: c.reasons,
     overview: c.overview,
-    advisorName: c.advisor?.name
+    advisorName: c.advisor?.name,
+    advisorEmail: c.advisor?.email,
+    ownerEmail: c.owner?.email,
+    emailAlias: c.emailAlias
   }));
 
   res.json({
@@ -97,7 +112,10 @@ app.get("/api/dashboards/advisor/:advisorId", (req, res) => {
       studentName: c.student?.name,
       nextActionDue: c.nextActionDue,
       reasons: c.reasons,
-      overview: c.overview
+      overview: c.overview,
+      ownerEmail: c.owner?.email,
+      advisorEmail: c.advisor?.email,
+      emailAlias: c.emailAlias
     }))
   });
 });

@@ -18,16 +18,60 @@
   </header>
 
   <main class="content">
+    <section class="home-intro">
+      <h2>Get the right tool for each role</h2>
+      <p class="helper-text">
+        Pick the workspace that matches what you need to do. Tricia keeps the full oversight; advisors forward updates in two clicks; lecturers raise concerns with a short form.
+      </p>
+    </section>
+
+    <section class="summary-grid" id="home-summary" aria-live="polite">
+      <article class="metric">
+        <h3>Open cases</h3>
+        <p class="metric-value" data-summary-open>–</p>
+        <p class="metric-description">Tracked in Tricia’s action queue.</p>
+      </article>
+      <article class="metric">
+        <h3>Due today</h3>
+        <p class="metric-value" data-summary-today>–</p>
+        <p class="metric-description">Actions that need attention before midnight.</p>
+      </article>
+      <article class="metric">
+        <h3>New intakes</h3>
+        <p class="metric-value" data-summary-intake>–</p>
+        <p class="metric-description">Lecturer submissions waiting on triage.</p>
+      </article>
+      <article class="metric">
+        <h3>Unmatched email</h3>
+        <p class="metric-value" data-summary-email>–</p>
+        <p class="metric-description">Messages that still need linking to a case.</p>
+      </article>
+    </section>
+
     <section class="card-grid">
       <article class="card">
-        <h2>Tricia Dashboard</h2>
-        <p>Global action queue, full visibility of open cases, intake tray, and unmatched email.</p>
+        <div>
+          <h2>Tricia Dashboard</h2>
+          <p>Monitor the global queue, assign work, and respond to unmatched emails from one place.</p>
+          <ul class="card-list">
+            <li>Prioritised action queue with filters</li>
+            <li>Quick links to contact advisors</li>
+            <li>Forwarded email guidance built in</li>
+          </ul>
+        </div>
         <a class="button" href="tricia.html">Open dashboard</a>
       </article>
 
       <article class="card">
-        <h2>Advisor Dashboard</h2>
-        <p>View advisee cases, track upcoming follow-ups, and add meeting notes.</p>
+        <div>
+          <h2>Advisor Dashboard</h2>
+          <p>Review your advisees, log progress, and forward email updates straight to Tricia.</p>
+          <ul class="card-list">
+            <li>Personalised case list and timelines</li>
+            <li>One-click template to email Tricia</li>
+            <li>Space to capture meeting notes</li>
+          </ul>
+        </div>
         <form id="advisor-form" class="form-inline">
           <label for="advisor-select">Choose advisor</label>
           <select id="advisor-select">
@@ -39,10 +83,22 @@
       </article>
 
       <article class="card">
-        <h2>Lecturer Intake</h2>
-        <p>Quickly report a concern and hand it off to the pastoral support team.</p>
+        <div>
+          <h2>Lecturer Intake</h2>
+          <p>Raise a concern in under a minute. We’ll send a receipt so you know it was received.</p>
+          <ul class="card-list">
+            <li>Guided two-step form</li>
+            <li>Checklist of information to include</li>
+            <li>Optional copy to Tricia’s inbox</li>
+          </ul>
+        </div>
         <a class="button" href="intake.html">Report concern</a>
       </article>
+    </section>
+
+    <section class="help-banner" role="note">
+      <h3>Need to get something to Tricia fast?</h3>
+      <p>Email <a href="mailto:pastoral.support@qub.ac.uk">pastoral.support@qub.ac.uk</a> with the student name in the subject line. Advisors can also forward threads directly from their dashboard.</p>
     </section>
   </main>
 
@@ -57,6 +113,49 @@
       const advisorId = document.getElementById("advisor-select").value;
       window.location.href = `advisor.html?advisorId=${encodeURIComponent(advisorId)}`;
     });
+
+    async function updateSummary() {
+      try {
+        const response = await fetch("/api/dashboards/tricia");
+        if (!response.ok) {
+          throw new Error("Unable to load summary");
+        }
+        const data = await response.json();
+        const now = new Date();
+        const startOfDay = new Date(now);
+        startOfDay.setHours(0, 0, 0, 0);
+        const endOfDay = new Date(now);
+        endOfDay.setHours(23, 59, 59, 999);
+
+        const dueToday = data.queue.filter((item) => {
+          const due = new Date(item.nextActionDue);
+          return due >= startOfDay && due <= endOfDay;
+        }).length;
+        const overdue = data.queue.filter((item) => {
+          const due = new Date(item.nextActionDue);
+          return !Number.isNaN(due.valueOf()) && due < startOfDay;
+        }).length;
+
+        document.querySelector("[data-summary-open]").textContent = data.queue.length;
+        document.querySelector("[data-summary-today]").textContent = dueToday;
+        document.querySelector("[data-summary-intake]").textContent =
+          (data.intakeQueue || []).length;
+        document.querySelector("[data-summary-email]").textContent =
+          (data.unmatchedEmails || []).length;
+
+        const dueTodayCard = document.querySelector("[data-summary-today]");
+        if (overdue > 0) {
+          dueTodayCard.closest(".metric").setAttribute("data-alert", "true");
+          dueTodayCard.textContent = `${dueToday} due • ${overdue} overdue`;
+        }
+      } catch (error) {
+        document.querySelectorAll("#home-summary .metric-value").forEach((el) => {
+          el.textContent = "—";
+        });
+      }
+    }
+
+    updateSummary();
   </script>
 </body>
 </html>

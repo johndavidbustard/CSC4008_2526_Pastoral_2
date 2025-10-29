@@ -21,22 +21,69 @@
   </header>
 
   <main class="content grid-2">
-    <section>
-      <h2>Action queue</h2>
-      <p class="helper-text">Ordered by next action due. Reasons show why the case is surfaced.</p>
+    <section class="primary-column">
+      <section class="summary-strip" id="tricia-summary" aria-live="polite">
+        <article>
+          <h3>Open cases</h3>
+          <p class="metric-value" data-tricia-open>–</p>
+          <p class="metric-description">Active cases owned by Tricia.</p>
+        </article>
+        <article>
+          <h3>Due today</h3>
+          <p class="metric-value" data-tricia-today>–</p>
+          <p class="metric-description">Actions that must move before midnight.</p>
+        </article>
+        <article>
+          <h3>Overdue</h3>
+          <p class="metric-value" data-tricia-overdue>–</p>
+          <p class="metric-description">Follow-ups past their target date.</p>
+        </article>
+      </section>
+
+      <header class="section-header">
+        <div>
+          <h2>Action queue</h2>
+          <p class="helper-text">Filters show only the work that matters right now.</p>
+        </div>
+        <div class="chip-group" role="group" aria-label="Filter action queue">
+          <button type="button" class="chip is-active" data-queue-filter="today">Due today</button>
+          <button type="button" class="chip" data-queue-filter="overdue">Overdue</button>
+          <button type="button" class="chip" data-queue-filter="all">All</button>
+        </div>
+      </header>
       <ul id="queue-list" class="list queue"></ul>
 
-      <h2>Intake tray</h2>
-      <p class="helper-text">New concerns submitted by lecturers.</p>
-      <ul id="intake-list" class="list intake"></ul>
+      <section class="section-block">
+        <header class="section-header small">
+          <div>
+            <h2>Intake tray</h2>
+            <p class="helper-text">New concerns submitted by lecturers.</p>
+          </div>
+        </header>
+        <ul id="intake-list" class="list intake"></ul>
+      </section>
 
-      <h2>Unmatched email</h2>
-      <p class="helper-text">Inbound messages that need manual linking.</p>
-      <ul id="email-list" class="list intake"></ul>
+      <section class="section-block">
+        <header class="section-header small">
+          <div>
+            <h2>Unmatched email</h2>
+            <p class="helper-text">Forwarded messages still waiting to link to a case.</p>
+          </div>
+          <div class="email-guidance">
+            <strong>Tip:</strong> Ask advisors to use the “Forward to Tricia” button so threads land here automatically.
+          </div>
+        </header>
+        <ul id="email-list" class="list intake"></ul>
+      </section>
     </section>
 
-    <section>
-      <h2>Case detail</h2>
+    <section class="secondary-column">
+      <header class="section-header">
+        <div>
+          <h2>Case detail</h2>
+          <p class="helper-text">Student context, advisor relationship, and latest timeline.</p>
+        </div>
+      </header>
       <div id="case-detail" class="panel empty">
         <p>Select a case to view student context and timeline.</p>
       </div>
