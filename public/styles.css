@@ -17,7 +17,7 @@ body.layout {
 }
 
 .topbar {
-  background: #c8102e;
+  background: #d6000d;
   color: #fff;
   padding: 24px 32px;
   display: flex;
@@ -33,8 +33,8 @@ body.layout {
 }
 
 .topbar-logo {
-  width: 56px;
-  height: 56px;
+  width: 119px;
+  height: 70px;
 }
 
 .topbar-title {
